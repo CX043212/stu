@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .box2{
+            width: 50px;
+            height: 50px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="handleAlert()">点击</button>
+        <button @click="handleAlert()">点击</button>
+        <div class="box" @contextmenu.prevent="handleMenu()">
+            <div class="box2" @contextmenu.stop.prevent.once="handleMenu2($event,100)"></div>
+        </div>
+        <input type="text" @keypress.enter="handlePress()">
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{},
+        //当前vue所需要用到的一些方法
+        methods:{
+            handleAlert(){
+                alert(1);
+            },
+            handleMenu(){
+                alert(2);
+            },
+            handleMenu2(e,val){
+               console.log(e,val)
+            },
+            handlePress(){
+                alert("提交");
+            }
+        }
+    })
+
+    /*
+        vue中的事件绑定用 v-on:事件名称  简写  @事件名称
+
+        修饰符:
+            stop 阻止冒泡
+            prevent 默认事件
+            enter 回车
+            once  只绑定一次  非form表单外
+            $event 如果在vue中需要使用事件对象了  需要在函数中传递形参$event
+
+
+        
+
+    */
+</script>

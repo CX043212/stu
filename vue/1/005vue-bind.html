@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:class="className" v-bind:title="message"></div>
+        <div :class="className" :title="message"></div>
+        <div :class="classArr" :title="message"></div>
+        <div :class="classObj" :title="message"></div>
+        <img :src="img" />
+        <input type="text" :value="inputVal">
+        <div :style="boxStyle"></div>
+        <div :style='{
+            "width":"100px",
+            "height":"100px",
+            "background":"red"
+        }'></div>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+
+        el: "#app",
+        data: {
+            message: "你好",
+            className:"box",
+            classArr:["box1","box2","box3"],
+            classObj:{
+                "box1":true,
+                "box2":false,
+                "box3":true
+            },
+            img:"https://cn.vuejs.org/images/logo.png",
+            inputVal:"123",
+            boxStyle:{
+                "width":"100px",
+                "height":"100px",
+                "background":"red"
+            }
+        }
+    })
+
+
+/*
+    v-bind 绑定元素的属性  简写  :属性
+        class
+        id
+        title
+        src
+        value
+        style
+        ....
+*/
+</script>

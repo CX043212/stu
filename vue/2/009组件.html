@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0}
+        ul,li{list-style: none}
+        .nav-container{
+            width: 100%;
+            height: 40px;
+            background: #000;
+        }
+
+        .nav-container>ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .nav-container>ul>li{
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <navcom></navcom>
+       <navcom></navcom>
+       <banner-com/>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    /*
+        组件：页面上的任何一部分都是组件
+            包含：html  css  js
+
+            作用：复用
+
+        组件创建的方式：
+            1、全局组件
+                  Vue.component()
+                  参数1:组件的名称  注意：组件的名称一般首字母大写  为了区分标签和组件的区别
+                  参数2:组件的配置项
+                        new Vue构造函数中有什么属性那么参数2中就有什么属性
+
+                        不同的是
+                            1、配置项中多了一个属性  template:当前组件的模版文件  类似于HTML文件 其实就是
+                            当前文件的布局
+
+                            2、data从对象变成了函数
+
+                使用方式  直接将当前的组件名称当做标签使用即可
+            2、局部组件
+        
+    */
+
+    const template = {
+        template:`<div class="nav-container">
+            <ul>
+               <li v-for="(item,index) in navs">{{item}}</li>
+            </ul>
+        </div>`,
+
+        data(){
+            return {
+                navs:["首页","文档","我的"]
+            }
+        }
+    }
+   
+    Vue.component("navcom",template)
+
+
+
+    let banner = {
+        template:`<div class="banner">
+            <ul>
+                <li>
+                    <img :src="imgPic"/>
+                </li>
+            </ul>
+        </div>`,
+        data(){
+            return {
+                imgPic:"http://upload.mobiletrain.org/2019/0111/1547203088208.jpg"
+            }
+        }
+    }
+    var vm = new Vue({
+        el:"#app",
+        components:{
+            //key值是组件的名称  options是组件的配置项
+            //key:options
+            "banner-com":banner
+        }
+    })
+</script>

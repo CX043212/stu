@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box1,
+        .box2,
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 20px;
+        }
+
+        .box2 {
+            background: #c33;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" v-show>
+            <input type="text">
+        </div>
+        <div class="box2 box" v-if="n == 1">
+            1111
+            <input type="text">
+        </div>
+        <div class="box2 box" v-else-if="n == 2">
+            2222
+            <input type="text">
+        </div>
+        <div class="box2 box" v-else>
+            3333
+            <input type="text">
+        </div>
+
+        <!-- 
+
+        <div class="box2 box" v-if>
+            <input type="text">
+        </div> -->
+
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            flag: true,
+            n: 2
+        }
+    })
+
+
+    /*
+        v-show  元素的显示隐藏
+        值：布尔值
+            true  显示
+            false 隐藏
+
+
+            默认值为false
+
+
+        底层原理是操作元素的display属性
+
+
+        v-if  元素的显示隐藏
+              条件判断
+
+            底层原理是操作元素的移除和新建
+
+
+        v-else-if  && v-else 前面必须要有v-if
+
+        v-else-if
+
+        v-else不需要表达式的结果
+
+    */
+</script>

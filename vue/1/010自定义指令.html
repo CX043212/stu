@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-zhao.a.b="123"></div>
+        <!-- <div v-bg="colorBg">11111</div> -->
+    </div>
+
+    <div id="app1">
+        <div v-zhao.a.b="123"></div>
+        <!-- <div v-bg="colorBg">11111</div> -->
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    /*
+        创建自定义指令的方式有2中
+            1、全局
+                Vue.directive()
+                参数1：指令名称
+                参数2: 指令实现的函数
+                    参数1：使用当前指令的元素 
+                    参数2：对象
+                        value:表达式的结果
+                        modifiers:当前指令的修饰符
+            2、局部
+    */
+
+
+    Vue.directive("zhao",(el,{value,modifiers})=>{
+        let {a,b} = modifiers;
+        if(a){
+            el.style.fontWeight=900
+        }
+
+        if(b){
+            el.style.fontStyle = "oblique"
+        }
+
+        el.innerText = value;
+
+    })
+
+    // Vue.directive("bg",(el,{value})=>{
+    //     el.style.background = value
+    // })
+
+
+
+
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            colorBg: "red"
+        },
+        directives: {
+            "zhao": (el, { value, modifiers }) => {
+                let { a, b } = modifiers;
+                if (a) {
+                    el.style.fontWeight = 100
+                }
+
+                if (b) {
+                    el.style.fontStyle = "oblique"
+                }
+
+                el.innerText = value;
+            }
+        }
+    })
+
+    new Vue({
+        el:"#app1"
+    })
+</script>

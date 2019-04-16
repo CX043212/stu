@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num1">
+        <input type="text" v-model.number="num2">
+        <p>之和：{{sum}}</p>
+        <hr>
+        <input type="text" v-model = "obj.name">
+        <input type="text" v-model = "obj.age">
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            num1:"",
+            num2:"",
+            sum:"",
+            banner:[],
+            obj:{
+                name:"张三",
+                age:19
+            }
+        },
+        methods:{},
+        computed:{},
+        watch:{
+            num1(newVal,oldVal){
+                if(newVal !== oldVal){
+                    this.sum = newVal+this.num2;
+                }
+               
+            },
+            num2(newVal,oldVal){
+                this.sum = newVal + this.num1;
+            },
+            // "obj.name"(newVal,oldVal){
+            //     console.log(newVal,oldVal)
+            // },
+            obj:{
+                handler(newVal){
+                    console.log(newVal);
+                },
+                deep:true
+            }
+
+        }
+    })
+    /*
+        watch 监听属性的变化
+
+        1、watch里面都是存放着属性的方法 方法的名称就是需要监听的属性的名称
+        2、watch里面的方法是不需要调用的，只要属性发生了改变那么watch就会被调用
+        3、watch里面的函数触发的时候(只要属性发生了改变的时候)会接受到2个值  一个值是新值 一个值是旧值
+        4、watch如果需要进行深度监听的时候(引用数据类型监听的时候)  需要在当前对象中 书写一个函数 handler
+         以及deep:true  进行深度监听
+            例子：
+                watch:{
+                    obj:{
+                        handler(newval){},
+                        deep:true
+                    }
+                }
+
+        
+    */
+</script>

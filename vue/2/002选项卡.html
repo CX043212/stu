@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tabToggle{
+            width: 200px;
+            height: 300px;
+        }
+        .btns>.active{
+            background: red;
+        }
+        .content{
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            overflow: hidden;
+        }
+        .content>div{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="tabToggle">
+            <div class="btns">
+                <button 
+                v-for="(item,index) in btns" 
+                :class="index == activeIndex?'active':''"
+                @click="handleToggle(index)"
+                >{{item}}</button>
+            </div>
+            <div class="content">
+                <div 
+                    v-text="contents[activeIndex]"
+                >{{item}}</div>
+            </div>
+
+            <!-- <div class="content">
+                    <div  
+                    v-for="(item,index) in contents"
+                    v-show="index == activeIndex"
+                    >{{item}}</div>
+            </div> -->
+            
+        </div>
+    </div>
+   
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            btns:["按钮一","按钮二","按钮三"],
+            contents:["111","222","333"],
+            //点击的下标
+            activeIndex:0
+        },
+        methods:{
+            handleToggle(params){
+                this.activeIndex = params;
+            }
+        }
+    })
+</script>

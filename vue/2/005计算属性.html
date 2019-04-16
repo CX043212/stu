@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num1">
+        <input type="text" v-model.number="num2">
+        <button @click="sum()">计算</button>
+        <div>methods结果:{{count}}</div>
+        <div>computed结果:{{flag?result:''}}</div>
+        <button @click="handle()">比较</button>
+        <button @click="handleCom()">computed计算结果</button>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+/*
+    
+    v-model 修饰符  number 转换成数字
+
+    计算属性  通过属性计算得来的属性
+
+        computed:专门用来做计算属性
+            1、computed用来进行属性的计算
+            2、computed里面的方法必须要有一个返回值
+            3、computed里面的方法在调用的时候是不需要加()的
+
+
+            只要data中的属性发生了改变那么就会自动执行computed里面的方法
+
+
+            计算属性只要属性发生改变那么就会执行computed里面的方法，但是如果属性没有发生改变方法是不会执行的，
+            计算的结果会从缓存当中读取
+
+*/
+
+
+var vm = new Vue({
+    el:"#app",
+    data:{
+       num1:null,
+       num2:null,
+       count:null,
+       flag:false
+    },
+    methods:{
+        sum(){
+            console.log("methods执行了")
+            this.count = this.num1+this.num2;
+        },
+        handle(){
+            this.sum();
+            console.log(this.result)
+        }
+        ,
+        handleCom(){
+            this.flag = !this.flag;
+        }
+    },
+    computed:{
+        result(){
+            console.log("computed执行了")
+            return this.num1+this.num2;
+        }
+    }
+})
+</script>

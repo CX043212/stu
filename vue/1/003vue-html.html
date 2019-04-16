@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-html="h2"></div>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+
+        el: "#app",
+        data: {
+            message: "你好", 
+            arr:[1,2,3,4],
+            str:"qianfeng",
+            obj:{
+                name:"张三"
+            },
+            h2:"<p>bbbbb</p>"
+        }
+    })
+/*
+    v-html
+
+        底层原理  innerHTML
+
+        v-html  简写  {{{}}}   vue1.0中起作用
+
+
+
+  
+
+       
+*/
+</script>

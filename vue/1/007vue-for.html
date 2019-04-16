@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item,index) in goods">
+            {{item.goodsName}}--------{{index}}
+        </div>
+
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+var vm = new Vue({
+    el:"#app",
+    data:{
+        goods:[
+            {
+                id:0,
+                goodsName:"香蕉"
+            },
+            {
+                id:1,
+                goodsName:"苹果"
+            },
+            {
+                id:2,
+                goodsName:"鸭梨"
+            }
+        ]
+    }
+})
+</script>

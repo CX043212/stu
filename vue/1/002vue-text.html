@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-text="message"></h2>
+        <h2 v-text="1+1"></h2>
+        <h2 v-text="2>3?'假':'真'"></h2>
+        <h2 v-text="arr[0]"></h2>
+        <h2 v-text="str.slice(1)"></h2>
+
+        <hr>
+
+        <h2 v-cloak>{{message}}</h2>
+        <h2 v-cloak>{{1+1}}</h2>
+        <h2 v-cloak>{{2>3?'假':'真'}}</h2>
+        <h2 v-cloak>{{arr[0]}}</h2>
+        <h2 v-cloak>{{str.slice(1)}}</h2>
+        <h2 v-cloak>{{obj.name}}</h2>
+        <h2 v-cloak>{{h2}}</h2>
+
+        <input type="text" v-text="message">
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+
+        el: "#app",
+        data: {
+            message: "你好", 
+            arr:[1,2,3,4],
+            str:"qianfeng",
+            obj:{
+                name:"张三"
+            },
+            h2:"<p>bbbbb</p>"
+        }
+    })
+/*
+    v-text
+        用来解析js表达式
+        底层原理用的innerText
+
+    v-text 等价与 {{}}
+
+       
+*/
+</script>

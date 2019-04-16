@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>{{message}}</p>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"123"
+        }
+    })
+
+
+/*
+    vue
+        尤雨溪
+
+        MVVM框架  (查)
+            M:Model层  数据的增删改查
+            V:view层   视图层 类似与HTML的模板
+            vm:viewModel  视图层与数据层之间的一个桥梁  映射关系   (镜子)
+
+            数据驱动视图：提高性能
+
+                虚拟DOM:真实的js对象  (查)
+
+                 
+            二阶段:操作DOM改变视图
+
+
+            因为操作DOM特别耗费性能
+                1、回流和重绘
+                    回流必定发生重绘
+                    重绘不一定会发生回流
+
+
+
+
+        MVC框架
+        MVP框架
+        ...
+
+        渐进式的JAVAscript框架
+        
+
+        渐进式：
+            vue中只会包含核心语法 如果需要其他功能的话需要其他的模块的支撑
+
+
+    react:
+
+
+*/
+</script>

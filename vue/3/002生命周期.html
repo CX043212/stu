@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p ref="p">{{message}}</p>
+        <p>年龄:{{age}}</p>
+        <button @click="handleModify()">修改message</button>
+        <button @click="update()">强制更新</button>
+    </div>
+
+
+    <button onclick="destroy()">销毁</button>
+</body>
+</html>
+
+
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"你好"
+        },
+        methods:{
+            handleModify(){
+                this.message="被修改了";
+            },
+            update(){
+                this.$forceUpdate();
+            }
+        },
+        beforeCreate(){
+            console.log("beforeCreate");
+            console.log(this.message)
+        },
+        created(){
+            console.log("created");
+            console.log(this.message)
+        },
+        beforeMount(){
+            this.message = "acb"
+            console.log("beforeMount");
+            console.log(document.getElementById("app").innerHTML)//数据和模板没有相结合
+            this.age = 20;
+        },
+        mounted() {
+            console.log("mounted")
+            console.log(document.getElementById("app").innerHTML)
+            console.log(this.$refs.p)
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate")
+            console.log(this.$refs.p)
+            console.log(this.message)
+        },
+        updated(){
+            console.log("updated");
+        },
+        beforeDestroy() {
+            console.log("beforeDestroy")
+            console.log(this.$refs.p)
+            console.log(this.message)
+        },
+        destroyed() {
+            console.log("destroyed")
+            console.log(this.$refs.p)//访问不到真是的dom结构
+            console.log(this.message)//可以访问到data属性
+        },
+    })
+
+
+
+    function destroy(){
+        vm.$destroy()
+
+    }
+   
+    /*
+        实例方法
+        vm.$mount()  绑定el  优先级  Vue中的el优先级要比$mount高
+        vm.$destroy()  销毁组件
+        vm.$forceUpdate() 强制更新
+    */
+
+
+    /*
+        生命周期  钩子函数
+        一个组件从创建到销毁的过程就是生周期
+
+
+        beforeCreate:创建前
+            1、当前vue实例化的时候会做一个初始化的操作，在这个生命周期函数里面我们可以做初始化的loading
+            2、在当前函数里面是访问不到data中的属性，但是可以通过vue的实例对象进行访问
+
+        created:创建后
+            1、当beforeCreate执行完毕以后，会执行created. 在当前函数中我们可以访问到data中的属性
+            2、当前生命周期函数执行的时候会将data中所以的属性和methods身上所以的方法添加到vue的实例身上，同时
+            会将data中所有的属性添加一个getter/setter方法
+
+            3、如果需要进行前后端上数据交互(ajax请求的时候) 需要在当前生命周期中使用
+        
+        beforeMount:挂载前
+            (渲染)
+            render函数初次被调用---->数据和模板没有进行相结合，同时还没有渲染到html页面上
+
+            渲染前data中数据最后的修改
+
+        mounted:挂载后
+            1、数据和模板进行相结合，渲染成真实的DOM结构
+            2、在当前生命周期函数里面我们可以访问到真实的DOM结构,
+            3、在vue中我们可以通过$refs来访问到真实的DOM结构
+            4、ref类似与id一样 值必须是唯一的   访问的时候我们可以通过this.$refs.属性
+        
+        beforeDestroy:销毁前
+            销毁之前还可以访问到DOM结构  以及相关的数据(data)
+            在这个生命周期函数中我们可以将绑定的事件进行移除
+
+        destroyed:销毁后
+            在这个生命周期函数中会将数据和模板之间的关系断开(不是你的做的)
+
+            在这个生命周期函数中我们还是可以访问到data中的属性
+            但是访问不到真实的DOM结构了
+
+        beforeUpdate:更新前
+            只要data中的属性发生了改变，那么这个生命周期就会执行，render函数再次会执行
+            在这个生命周期函数中我们可以对数据进行最后的修改，同时也可以访问到最新的DOM结构和数据
+
+        updated:更新后
+            在当前生命周期函数中我们可以访问到最新的DOM结构(数据更新后最新的DOM结构)和数据
+    */
+   
+   
+   
+   
+   /*
+    innerHTML 设置或获取位于对象起始和结束标签内的 HTML
+	outerHTML 设置或获取对象及其内容的 HTML 形式
+	innerText 设置或获取位于对象起始和结束标签内的文本
+	outerText 设置(包括标签)或获取(不包括标签)对象的文本
+	innerText和outerText在获取时是相同效果，但在设置时，
+	innerText仅设置标签内的文本，而outerText设置包括标签在内的文本。
+  不同之处:  简单的说innerHTML和outerHTML、innerText与outerText的不同之处在于：　
+	　1）、innerHTML与outerHTML在设置对象的内容时包含的HTML会被解析，而innerText与outerText则不会。　　
+	  2) 、在设置时，innerHTML与innerText仅设置标签内的文本，而outerHTML与outerText设置包括标签在内的文本。   
+	  3）、outhtml innerText(非W3C)
+   */
+</script>
+

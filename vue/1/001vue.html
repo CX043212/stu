@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        //当前vue所执行的作用域
+        el:"#app",//document.querySeletor()
+        //当前vue所需要的一些(状态)  属性  当前vue所需要的属性必须在data中存放
+        data:{
+            message:"123"
+        }
+    })
+
+    console.log(vm);
+</script>

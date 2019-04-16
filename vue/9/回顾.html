@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+/*
+    1、路由
+
+
+    2、axios
+
+
+        axios.get(url,{params:{}})
+        axios.post(url,{})
+
+        axios({
+            method:请求的方式
+            url:请求的地址
+            data:传递的数据
+            headers:{
+                "Content-type":"application/json"  "apllication/x-www-form-urlencoded"
+            }
+        })
+
+
+        qs:
+
+            当后端接收数据的形式不是以json形式的进行接收的时候 我们需要将提交的数据通过qs 进行序列化
+
+
+        qs.stringify   
+        
+        JSON.stringify
+
+
+        前者转换拼接形式  key=val&key=val
+
+                        "{'key':'val'}"
+
+
+
+        axios.interceptors.request.use((config)=>{
+
+                if(config.method == "get"){
+                    config.params = config.data
+                }else if(config.method == "post"){
+                    config.data = qs.stringfiy(config.data);
+                }
+
+            return config
+        })
+
+        axios.interceptors.response.use()
+
+
+
+
+
+*/
+</script>

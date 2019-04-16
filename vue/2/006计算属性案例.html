@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="goods">
+            <h2>三只松鼠</h2>
+            <p>单价:<span>{{price}}</span></p>
+            <button @click="reduce()">-</button>
+            <input type="text" v-model="num">
+            <button @click="add()">+</button>
+            <p>运费:<span>{{freight}}</span>元,满199包邮</p>
+            <p>应付:{{pay}}</p>
+        </div>
+
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+/*
+    商品  
+        单价  23.3
+        数量   1
+        小计  23.3 
+        运费  10     满199包邮
+        应付  33.3 
+*/
+
+
+var vm = new Vue({
+    el:"#app",
+    data:{
+        price:23.3,
+        num:1,
+        freight:10,
+    },
+    methods: {
+        add(){
+            this.num++;
+        },
+        reduce(){
+            if(this.num <=1){
+                this.num = 1;
+            }else{
+                this.num--;
+            }
+        }
+    },
+    computed:{
+        pay(){
+            let n = (this.price*10 * this.num)/10 + 10;
+
+            if(n>=199){
+                return n-10;
+            }else{
+                return n;
+            }
+        }
+    }
+})
+</script>

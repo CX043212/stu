@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3 v-pre>{{message}}</h3>
+        <h3 v-once >{{message}}</h3>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"德玛西亚"
+        }
+    })
+
+    /*
+        v-pre  不需要解析表达式
+
+        v-cloak   v-text {{}}  区别
+
+        v-once  只解析一次
+
+
+
+
+
+
+
+
+        1、用vue写一个选项卡
+
+        2、用vue写一个todolist 
+
+        3、用自定义指令写一个拖拽
+            value值为true可以拖拽   false不允许拖拽
+
+            要求修饰符 x存在  只允许X轴拖动
+                      y存在  只允许Y轴拖动
+
+                      x y都存在  或者 x y 都不存在  X Y轴都可以拖动
+
+                      
+
+          MVVM框架  (查)
+
+         虚拟DOM:真实的js对象  (查)
+    */
+</script>

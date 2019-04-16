@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <button onclick="handleEmit()">事件触发</button>
+    <button onclick="handleEmitFn1()">事件触发</button>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+var vm = new Vue({
+    el:"#app"
+})
+
+
+console.log(vm);
+
+function fn(){
+    console.log("事件绑定")
+}
+
+function fn1(){
+    console.log("事件绑定---once")
+}
+
+
+vm.$on("handle",fn);
+vm.$once("handle1",fn1);
+
+
+
+function handleEmitFn1(){
+    
+    vm.$emit("handle1")
+}
+
+
+
+function handleEmit(){
+    //vm.$off("handle",fn);
+    vm.$emit("handle")
+}
+
+
+/*
+    vue实例身上的方法
+        $on
+        $emit
+        $off
+        $once
+*/
+</script>

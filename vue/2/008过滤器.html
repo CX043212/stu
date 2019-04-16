@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>{{message | reverse}}</p>
+
+        <hr>
+        <p>商品名称:三只松鼠</p>
+        <p>单价：{{price}}</p>
+        <p>数量：{{num}}</p>
+        <p>总价：{{price|toPrice(num)}}</p>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    /*
+        过滤器：过滤数据
+          全局  Vue.filter()
+                参数1：过滤器的名称
+                参数2：过滤器实现的函数  
+                        参数是需要过滤的数据
+
+        使用的时候通过管道进行使用  |
+
+
+            局部 filters
+    */
+
+    Vue.filter("reverse",(value)=>{
+        return value.split("").reverse().join("");
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"",
+            price:"￥23.3",
+            num:10
+        },
+        filters:{
+            toPrice(val,n){
+              return "￥"+val.slice(1)*n;
+            }
+        }
+    })
+</script>

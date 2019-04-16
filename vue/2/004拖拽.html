@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-drag.x.prevent.y="flag" class="box">111121dasdasdas</div>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    Vue.directive("drag", (el, { modifiers, value }) => {
+        el.style.position = "absolute";
+        el.onmousedown = function (e) {
+            var disx = e.offsetX;
+            var disy = e.offsetY;
+
+
+            document.onmousemove = function (e) {
+                var l = e.clientX - disx;
+                var t = e.clientY - disy;
+                var {x,y} = modifiers;
+              
+
+                if (value) {
+                    if ((x && y) || (!x&&!y)) {
+                        el.style.left = l + "px";
+                        el.style.top = t + "px";
+                    }
+
+                    if (x) {
+                        el.style.left = l + "px";
+                      
+                    }
+
+                    if (y) {
+                        el.style.top = t + "px";
+                        
+                    }
+
+                }
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            flag: true
+        }
+    })
+</script>
